@@ -1,0 +1,3 @@
+#!/bin/sh
+scrot -s 'screenshot-%s.png' -e 'mv $f ~/Pictures/'
+
