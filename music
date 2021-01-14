@@ -1,0 +1,29 @@
+#!/bin/sh 
+
+#echo "What is the Path of the Song?"
+#read -e -p 'Path: ' path 
+
+path=$(pwd)
+
+echo "What is the name of the file?"
+read -e -p "fn: " fn
+
+echo "What is the title and artist of the song?"
+read -e -p 'Title: ' title 
+
+echo "What is the name of the Artist?"
+read -e -p 'Artist: ' artist
+
+echo "What is the name of the Album?"
+read -e -p 'Album: ' album
+
+echo "What is the Track Number?"
+read -e -p 'Track Number: ' track
+
+echo "What is the year of publication?"
+read -e -p 'Year: ' year
+
+echo "Do you have a comment?"
+read -e -p 'Comment: ' comment
+
+id3 -2 --title "$title" -a "$artist" -l "$album" -n "$track" -y "$year" -c "$comment" "$path"/"$fn"

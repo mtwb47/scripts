@@ -1,0 +1,36 @@
+#!/bin/bash
+version="v0.2.0-cfork.2"
+
+
+open_title() {
+    echo $1 | cut -d ' ' -f 1 | xargs --no-run-if-empty buku -o
+}
+
+
+tag_search () {
+    tagSearch=$(buku -t | sed '/^.*\(\? for help\).*$/d' | dmenu -i)
+    if [[ $tagSearch ]]; then
+        open_title $(buku -s $tagSearch -f 3 | dmenu -i) 
+    fi
+}
+
+
+title_search() {
+    #get all bmks | swap tabs for spaces | run dmenu | cut to ID | run buku if not empty
+    open_title $(buku -p -f 3 | sed 's/\t/ /g' | dmenu -i)
+}
+
+
+if [ "$1" == "--help" ] ; then
+    echo "Run the script, start typing until the desired bookmark is selected."
+    echo "buku and dmenu must be installed."
+    exit 0
+elif [ "$1" == "--version" ] ; then
+    echo "buku-dmenu $version"
+    exit 0
+elif [ "$1" == "-t" ] || ["$1" == "--tags" ]; then
+    tag_search
+else
+    title_search
+fi
+

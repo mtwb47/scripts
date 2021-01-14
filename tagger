@@ -1,0 +1,27 @@
+#!/bin/sh
+
+echo "Path to the Song"
+read -e -p 'Path: ' path
+
+echo "What is the title of the song?"
+read -e -p 'Title: ' title
+
+echo "Who is the Artist?"
+read -e -p 'Artist: ' artist
+
+echo "What is the name of the album?"
+read -e -p 'Album: ' album
+
+echo "What is the track number?"
+read -e -p 'Track Number: ' track
+
+echo "What year was it released?"
+read 'Year: ' year
+
+echo "Do you wish to leave a comment?"
+read 'Comment: ' comment
+
+id3 -t "$title" -a "$artist" -l "$album" -n "$track" -y "$year" -c "$comment" $path && id3 -2 -f "%t.mp3"
+
+
+
