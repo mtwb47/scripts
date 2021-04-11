@@ -1,0 +1,1 @@
+grep XK_ .config/suckless/dwm/config.def.h | grep MODKEY | awk {'print $2 " " $3 " --- " $4 " " $7 '} | sed 's/,//g' | sed 's/XK_//g' | sed 's/}//g' | sed 's/&//g' | sed 's/|ShiftMask/ + Shift'/g | sed 's/MODKEY/MOD/g' | sed 's/|ControlMask/ + Ctrl/g' | column
