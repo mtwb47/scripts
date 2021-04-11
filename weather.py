@@ -15,8 +15,8 @@
 
 import requests
 
-CITY = "4998830"
-API_KEY = "4cf3731a25d1d1f4e4a00207afd451a2"
+CITY = "YOUR LOCATION HERE"
+API_KEY = "EDIT YOUR API KEY HERE!"
 UNITS = "imperial"
 #UNIT_KEY = "C"
 UNIT_KEY = "F"
