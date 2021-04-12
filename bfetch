@@ -34,9 +34,23 @@ while IFS='=' read KEY VALUE; do
 done < /etc/os-release
 
 KERNEL=`uname -r`
-RAM=$(echo "$((`grep MemTotal /proc/meminfo | awk '{print $2}'`/1024))")
-RAM_USED=$(echo $((`grep MemAvailable /proc/meminfo | awk '{print $2}'`/1024)))
-RAM_USED=$(echo $((RAM-RAM_USED)))
+
+while IFS=':' read KEY VALUE; do
+	if [ "$KEY" == 'MemTotal' ]; then
+		RAM=$((${VALUE//[![:digit:]]} / 1024))
+	elif [ "$KEY" == 'MemAvailable' ]; then
+		RAM_USED=$((${VALUE//[![:digit:]]} / 1024))
+	elif [ -n "$RAM" -a -n "$RAM_USED" ]; then
+		RAM_USED=$((RAM - RAM_USED))
+
+		# Insert commas to both values. Uncomment these two lines to disable.
+		printf -v RAM "%'d" $RAM
+		printf -v RAM_USED "%'d" $RAM_USED
+
+		break
+	fi
+done < /proc/meminfo
+
 UPTIME=`echo $(uptime | awk '{print $3}' | sed 's/,//g' | sed 's/\:/h /g')m`
 HOSTNAME=`hostnamectl | head -n 1 | awk '{print $3}'`
 USERNAME=`whoami`
