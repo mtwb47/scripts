@@ -53,10 +53,9 @@ done < /proc/meminfo
 
 UPTIME=`uptime | awk '{print $3}' | sed 's/,//g' | sed 's/\:/h /g'`
 HOSTNAME=`hostnamectl | head -n 1 | awk '{print $3}'`
-USERNAME=`whoami`
 
 echo -e "${BLUE}┏━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
-echo -e "${BLUE}┃${RESTORE}   .${ORANGE}~${RESTORE}.   ${BLUE}┃  ${BLUE}$HOSTNAME${RESTORE}@${BLUE}$USERNAME""\t\t"${BLUE}┃
+echo -e "${BLUE}┃${RESTORE}   .${ORANGE}~${RESTORE}.   ${BLUE}┃  ${BLUE}$HOSTNAME${RESTORE}@${BLUE}$USER""\t\t"${BLUE}┃
 echo -e "${BLUE}┃${RESTORE}   ${DARK}/${ORANGE}V${RESTORE}${DARK}\   ${BLUE}┃  ${PURPLE}os${RESTORE}\t\t$OS""\t"${BLUE}┃
 echo -e "${BLUE}┃${RESTORE}  ${DARK}/${WHITE}/ \\\\${DARK}\  ${BLUE}┃  ${PURPLE}uptime${RESTORE}\t${UPTIME}m""\t\t"${BLUE}┃
 echo -e "${BLUE}┃${RESTORE} ${DARK}/${WHITE}(   )${DARK}\ ${BLUE}┃  ${PURPLE}kernel${RESTORE}\t$KERNEL""\t"${BLUE}┃
