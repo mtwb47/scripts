@@ -20,7 +20,19 @@ WHITE='\033[1;37m'
 ORANGE='\033[1;33m'
 DARK='\033[1;30m'
 
-OS=`grep NAME /etc/os-release | sed 's/\"//g' | sed 's/.*=//g'`
+# One sed(1) call, instead of two. Uses backreferencing (the parentheses) and
+# separates multiple (two) commands into the same sed(1) call. Using `-E` flag
+# for extended REGEX.
+#OS=`sed -E '/^NAME=/!d; s/^NAME="(.*)"$/\1/' /etc/os-release`
+
+# A significantly more efficient yet more advanced approach to the above:
+while IFS='=' read KEY VALUE; do
+	if [ "$KEY" == 'NAME' ]; then
+		OS=${VALUE//\"}
+		break
+	fi
+done < /etc/os-release
+
 KERNEL=`uname -r`
 RAM=$(echo "$((`grep MemTotal /proc/meminfo | awk '{print $2}'`/1024))")
 RAM_USED=$(echo $((`grep MemAvailable /proc/meminfo | awk '{print $2}'`/1024)))
