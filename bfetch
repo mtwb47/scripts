@@ -52,7 +52,7 @@ while IFS=':' read KEY VALUE; do
 done < /proc/meminfo
 
 UPTIME=`uptime | awk '{print $3}' | sed 's/,//g' | sed 's/\:/h /g'`
-HOSTNAME=`hostnamectl | head -n 1 | awk '{print $3}'`
+[ -z "$HOSTNAME" ] && HOSTNAME=`hostname`
 
 #TODO: This needs a LOT of work to be effective, in that it needs to be handled
 #      dynamically, in order to maintain column widths; a time-consuming task.
