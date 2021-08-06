@@ -1,0 +1,15 @@
+Input: file, title, genre, year
+Pass input into db
+create file with movie info and save it into the movie's directory.
+rename movie file to title
+
+
+Input Config desired config location.
+Input desired repository location
+Ask for which wms are installed? Or just run through a bunch of if statements. If this exists, then this. 
+Create a backup of all files that are desired to be moved. Maybe just the entire config file.
+Move desired config files to repository location.
+create sym links back to the appropriate location from repository.
+*Maybe* Create git repository. 
+
+
