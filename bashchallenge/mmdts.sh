@@ -9,7 +9,7 @@
 # Currently Supported Dots: Alacritty, BSPWM, i3, AwesomeWM
 ##########################################################
 
-#Define Repo Location 
+#Define Repo Location. If you would like to customize the location or name of your repo, do so here.
 repo=$HOME/myrepo
 
 #Define Colors
@@ -34,14 +34,12 @@ read -p "Are You Sure You'd Like to Continue? [Y/n] " input
  
 case $input in
     [yY][eE][sS]|[yY])
- echo "Yes"
- ;;
+     echo "Yes" ;;
     [nN][oO]|[nN])
- exit
-       ;;
+    exit ;;
     *)
- echo "Invalid input..."
- exit 1
+    echo "Invalid input..."
+    exit 1
  ;;
 esac
 
@@ -49,21 +47,22 @@ esac
 if [ -d "$HOME/.config" ]; then
     printf ".config file exists, script will continue \n"
 else
-    exit
+    exit 1
 fi
 
 #Make Repo
 if [ ! -f $repo ]; then
     mkdir $repo
 else
-    printf "Repo Already Exists"
+    printf "Repo Already Exists\n"
 fi
 
 #Backup Congig file if Config File exists
 if [ -d "$HOME/.config/" ]; then
     cp -Rf ~/.config ~/.config-backup-$(date +%Y.%m.%d-%H.%M.%S)
 else
-    echo "Where is your .config file, you hooligan?"
+    printf "Where is your .config file, you hooligan?\n"
+    exit
 fi
 
 #BSPWM
