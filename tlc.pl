@@ -38,4 +38,7 @@ foreach (split("\n", $Response->decoded_content())) {
 		last()
 	}
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
