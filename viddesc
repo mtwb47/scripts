@@ -1,0 +1,4 @@
+#!/bin/bash
+
+xclip -sel clip < ~/media/Documents/vid_desc
+
