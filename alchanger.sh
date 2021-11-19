@@ -12,6 +12,9 @@ declare -a options=(
 "solarized-light"
 "solarized-dark"
 "tomorrow-night"
+"onedark"
+"papercolor"
+"moonfly"
 "quit"
 )
 
@@ -36,6 +39,12 @@ case $choice in
         sed -i '/colors:/c\colors: *solarized-dark' $config ;;
     'tomorrow-night')
         sed -i '/colors:/c\colors: *tomorrow-night' $config ;;
+    'papercolor')
+        sed -i '/colors:/c\colors: *papercolor' $config ;;
+    'onedark')
+        sed -i '/colors:/c\colors: *onedark' $config ;;
+    'moonfly')
+        sed -i '/colors:/c\colors: *moonfly' $config ;;
     'quit')
         echo "No theme chosen" && exit 1 ;;
 esac
